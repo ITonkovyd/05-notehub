@@ -59,7 +59,9 @@ function App() {
           <NoteForm onClose={() => setIsModalOpen(false)} />
         </Modal>
       )}
-      <Toaster position="top-left" />
+      <Toaster
+        position={isSuccess && data.totalPages > 1 ? "top-left" : "top-center"}
+      />
     </div>
   );
 }
