@@ -33,10 +33,12 @@ function App() {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox onChange={(query) => {
-          setSearchQuery(query);
-          setPage(1);
-        }} />
+        <SearchBox
+          onChange={(query) => {
+            setSearchQuery(query);
+            setPage(1);
+          }}
+        />
         {isSuccess && data.totalPages > 1 && (
           <Pagination
             pagesCount={data.totalPages}
@@ -44,20 +46,20 @@ function App() {
             onPageChange={(newPage) => setPage(newPage)}
           />
         )}
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>Create note +</button>
+        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+          Create note +
+        </button>
       </header>
       <main>
         {isLoading && <Loader />}
-        {isSuccess && (
-          <NoteList notes={data.notes} />
-        )}
+        {isSuccess && <NoteList notes={data.notes} />}
       </main>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           <NoteForm onClose={() => setIsModalOpen(false)} />
         </Modal>
       )}
-      <Toaster />
+      <Toaster position="top-left" />
     </div>
   );
 }
